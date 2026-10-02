@@ -1,0 +1,37 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {
+    "email": "Assunto: Orçamento para 3 unidades\n\nOlá, sou a Marina, diretora de operações da Rede Vitta, com 3 clínicas em Campinas. Recebemos cerca de 400 mensagens por dia no WhatsApp e hoje 4 pessoas respondem tudo na mão. Queremos automatizar o atendimento e o agendamento ainda este mês. Já temos orçamento aprovado. Vocês conseguem uma demonstração na quinta ou sexta? Meu número é (19) 99812-4470.\n\nObrigada,\nMarina Duarte"
+  },
+  "questions": {
+    "lead_promissor": {
+      "type": "score",
+      "instructions": "Quão promissor é o remetente de `email` como cliente para uma plataforma de atendimento por WhatsApp?",
+      "criteria": [
+        "Nada promissor: sem interesse real de compra",
+        "Pouco promissor: curiosidade, sem necessidade ou prazo claros",
+        "Promissor: necessidade clara, mas sem prazo ou orçamento",
+        "Muito promissor: necessidade clara, prazo curto e orçamento disponível"
+      ]
+    },
+    "tipo_email": {
+      "type": "choice",
+      "instructions": "Que tipo de e-mail é `email`?",
+      "criteria": {
+        "pedido_de_orcamento_ou_demo": "A pessoa quer comprar, pede preço, proposta ou demonstração",
+        "duvida_de_cliente": "Um cliente atual pede ajuda com o produto",
+        "reclamacao": "A pessoa está insatisfeita e reclama",
+        "parceria_ou_fornecedor": "Alguém oferecendo um produto, serviço ou parceria",
+        "spam_ou_marketing": "Mensagem em massa, propaganda ou spam"
+      }
+    },
+    "precisa_resposta_pessoal": {
+      "type": "noul",
+      "instructions": "O `email` precisa de uma resposta escrita por uma pessoa da equipe, e não de uma resposta automática?",
+      "criteria": {
+        "true": "Pede algo específico (horário, proposta, negociação) que exige uma pessoa",
+        "false": "Uma resposta automática padrão resolve"
+      }
+    }
+  }
+}
