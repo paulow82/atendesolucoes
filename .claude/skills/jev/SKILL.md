@@ -45,6 +45,21 @@ e `usage {input_tokens, output_tokens, cost}`. A documentação oficial do
 OpenRouter já mudou de lugar uma vez; se a rota falhar com 404, confira em
 https://openrouter.ai/docs/llms.txt (seção Decisions).
 
+Para dados de clientes, mande `"provider": {"zdr": true, "data_collection": "deny"}`
+no corpo: o endpoint da TypeSafe no OpenRouter está na lista de retenção zero.
+
+## Rotas de acesso (verificado em 02/10/2026)
+
+| Rota | Endpoint | Preço | Observações |
+| - | - | - | - |
+| OpenRouter Decisions (padrão) | `POST openrouter.ai/api/alpha/decisions` | US$ 0,042/M tokens de entrada, saída grátis; 5,5% de taxa na compra de créditos | Sem lista de espera, `usage.cost` por chamada, ZDR por requisição, contexto 32k. Rota "alpha": pode mudar. |
+| OpenRouter System One | `POST openrouter.ai/api/v1/systemone` | igual | Mesmo formato da API da TypeSafe (troca só a URL base no SDK oficial). |
+| TypeSafe direta | `POST api.typesafe.ai/v1/systemone`, chave em console.typesafe.ai | US$ 0,042/M, sem taxa do OpenRouter | Modelo `jev-latest` ou versão fixa `jev-1.13.0`; contexto 64k; 40 req/s; ZDR só no plano enterprise; acesso pode exigir aprovação. |
+
+Mesma estrutura de pergunta e resposta nas três; trocar de rota é trocar URL, chave
+e nome do modelo. O skill oficial do fabricante está em `.claude/skills/typesafe-ai`
+(use-o para desenhar perguntas e padrões; este skill cuida da execução).
+
 ## Os 3 formatos (os únicos)
 
 | Tipo | Para quê | `criteria` | Resposta |
